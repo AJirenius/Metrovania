@@ -1,0 +1,45 @@
+local config = require "main.config"
+
+local map_width_px
+local map_height_px
+
+local offset = config.TILE_WIDTH_PX * 0.5
+function init(self)
+   msg.post("#camera", "acquire_camera_focus")
+end
+
+function update(self, dt)
+    local pos = go.get_position(self.player)
+	pos.x = pos.x - config.VIEWPORT_WIDTH*0.5
+	pos.y = pos.y - config.VIEWPORT_HEIGHT*0.5	
+	if pos.x < offset then pos.x = offset
+	elseif pos.x > map_width_px-config.VIEWPORT_WIDTH-offset then
+		pos.x = map_width_px-config.VIEWPORT_WIDTH-offset
+	end
+	if pos.y < offset then pos.y = offset end
+	if pos.y > map_height_px-config.VIEWPORT_HEIGHT-offset then
+		pos.y = map_height_px-config.VIEWPORT_HEIGHT-offset
+	end
+	
+    go.set_position(pos)
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == hash("set_boundaries") then
+    	self.bounds = message.bounds
+    	map_width_px = self.bounds.z * config.TILE_WIDTH_PX
+    	map_height_px = self.bounds.w * config.TILE_HEIGHT_PX
+    elseif message_id == hash("set_player") then
+    	self.player = message.player
+    end
+end
+
+function on_input(self, action_id, action)
+    -- Add input-handling code here
+    -- Remove this function if not needed
+end
+
+function on_reload(self)
+    -- Add reload-handling code here
+    -- Remove this function if not needed
+end

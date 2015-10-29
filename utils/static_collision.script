@@ -1,0 +1,43 @@
+local group_static_bg = hash("static_bg")
+
+local function handle_obstacle_contact(self, normal, distance)
+    --[[
+    -- project the correction vector onto the contact normal
+    -- (the correction vector is the 0-vector for the first contact point)
+    local proj = vmath.dot(self.correction, normal)
+    -- calculate the compensation we need to make for this contact point
+    local comp = (distance - proj) * normal
+    -- add it to the correction vector
+    self.correction = self.correction + comp
+    -- apply the compensation to the player character
+    go.set_position(go.get_position() + comp)
+    -- check if the normal points enough up to consider the player standing on the ground
+    -- (0.7 is roughly equal to 45 degrees deviation from pure vertical direction)
+   
+    
+ 
+    
+    --]]
+
+    go.set_position(go.get_position()+ normal*distance)
+    if normal.y > 0.7 then
+        self.vertical_contact = 1
+        player_state.set_state(self, player_state.STANDING)
+    end
+    
+    -- project the velocity onto the normal
+    proj = vmath.dot(self.velocity, normal)
+    -- if the projection is negative, it means that some of the velocity points towards the contact point
+    if proj < 0 then
+        -- remove that projection in that case
+        self.velocity = self.velocity - proj * normal
+    end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == msg_contact_point_response then
+        if message.group == group_static_bg then
+            handle_obstacle_contact(self, message.normal, message.distance)
+        end
+    end
+end

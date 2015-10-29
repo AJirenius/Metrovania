@@ -1,0 +1,36 @@
+local gop = require "utils.gop"
+
+
+function init(self)
+	self.global = gop.get_properties()
+	self.input_up = hash("up_"..self.global.player_id)
+	self.input_down = hash("down_"..self.global.player_id)
+	self.input_left = hash("left_"..self.global.player_id)
+	self.input_right = hash("right_"..self.global.player_id)
+	self.input_jump = hash("jump_"..self.global.player_id)
+	self.input_fire = hash("fire_"..self.global.player_id)
+end
+
+function on_input(self, action_id, action)
+	--if self.global.state == player_state.DEAD then return end
+    if action_id == self.input_left then
+        self.global.move_input.x = -action.value
+        flip_horizontal(self,true)
+    elseif action_id == self.input_right then
+        self.global.move_input.x = action.value
+        flip_horizontal(self,false)
+    elseif action_id == self.input_up then
+        self.global.move_input.y = action.value
+    elseif action_id == self.input_down then
+        self.global.move_input.y = -action.value
+    elseif action_id == self.input_jump then
+        if action.pressed then
+        	jump(self)
+        elseif action.released then
+            abort_jump(self)
+        end
+	end
+	if action_id == self.input_fire then
+		print("hit")
+	end
+end

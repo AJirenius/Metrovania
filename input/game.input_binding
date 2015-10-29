@@ -1,0 +1,60 @@
+key_trigger {
+  input: KEY_RIGHT
+  action: "right_1"
+}
+key_trigger {
+  input: KEY_LEFT
+  action: "left_1"
+}
+key_trigger {
+  input: KEY_UP
+  action: "up_1"
+}
+key_trigger {
+  input: KEY_DOWN
+  action: "down_1"
+}
+key_trigger {
+  input: KEY_SPACE
+  action: "jump_1"
+}
+key_trigger {
+  input: KEY_LSHIFT
+  action: "fire_1"
+}
+key_trigger {
+  input: KEY_D
+  action: "dash_1"
+}
+gamepad_trigger {
+  input: GAMEPAD_RPAD_RIGHT
+  action: "fire_2"
+}
+gamepad_trigger {
+  input: GAMEPAD_RPAD_LEFT
+  action: "fire_2"
+}
+gamepad_trigger {
+  input: GAMEPAD_RPAD_UP
+  action: "dash_2"
+}
+gamepad_trigger {
+  input: GAMEPAD_RPAD_DOWN
+  action: "jump_2"
+}
+gamepad_trigger {
+  input: GAMEPAD_LSTICK_LEFT
+  action: "left_2"
+}
+gamepad_trigger {
+  input: GAMEPAD_LSTICK_RIGHT
+  action: "right_2"
+}
+gamepad_trigger {
+  input: GAMEPAD_LSTICK_DOWN
+  action: "down_2"
+}
+gamepad_trigger {
+  input: GAMEPAD_LSTICK_UP
+  action: "up_2"
+}
