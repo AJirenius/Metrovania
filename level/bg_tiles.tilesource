@@ -98,7 +98,7 @@ convex_hulls {
 convex_hulls {
   index: 68
   count: 4
-  collision_group: ""
+  collision_group: "climbable_top"
 }
 convex_hulls {
   index: 72
@@ -1286,6 +1286,7 @@ convex_hulls {
   collision_group: ""
 }
 collision_groups: "climbable"
+collision_groups: "climbable_top"
 collision_groups: "static_bg"
 animations {
   id: "anim"

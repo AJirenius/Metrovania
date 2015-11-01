@@ -39,28 +39,12 @@ instances {
     z: 1.0
   }
 }
-scale_along_z: 0
-embedded_instances {
-  id: "main"
-  data: "components {\n"
-  "  id: \"script\"\n"
-  "  component: \"/main/main.script\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  ""
+instances {
+  id: "slime"
+  prototype: "/enemies/slime/slime.go"
   position {
-    x: 640.0
-    y: 360.0
+    x: 1383.1561
+    y: 102.72121
     z: 0.0
   }
   rotation {
@@ -75,6 +59,107 @@ embedded_instances {
     z: 1.0
   }
 }
+instances {
+  id: "slime1"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 837.4477
+    y: 305.10315
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime2"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 761.5545
+    y: 178.61443
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime3"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime4"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 100.19925
+    y: 453.27563
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime5"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 150.79474
+    y: 301.48917
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.5
+    y: 0.5
+    z: 1.0
+  }
+}
+scale_along_z: 0
 embedded_instances {
   id: "level"
   data: "components {\n"
@@ -102,6 +187,7 @@ embedded_instances {
   "restitution: 0.5\\n"
   "group: \\\"default\\\"\\n"
   "mask: \\\"player\\\"\\n"
+  "mask: \\\"enemy\\\"\\n"
   "linear_damping: 0.0\\n"
   "angular_damping: 0.0\\n"
   "locked_rotation: false\\n"
@@ -123,6 +209,41 @@ embedded_instances {
     x: 0.0
     y: 0.0
     z: -0.1
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "main"
+  data: "components {\n"
+  "  id: \"script\"\n"
+  "  component: \"/main/main.script\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 640.0
+    y: 360.0
+    z: 0.0
   }
   rotation {
     x: 0.0

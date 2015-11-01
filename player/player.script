@@ -3,6 +3,7 @@ go.property("player_id", 0)
 local config = require "main.config"
 local anim = require "utils.anim"
 local player_state = require "player.player_state"
+local player_touch = require "player.player_touch"
 
 -- pre-hashing ids improves performance
 local msg_contact_point_response = hash("contact_point_response")
@@ -10,6 +11,7 @@ local msg_animation_done = hash("animation_done")
 
 local group_static_bg = hash("static_bg")
 local group_climbable = hash("climbable")
+local group_climbable_top = hash("climbable_top")
 
 local anim_run = hash("walk")
 local anim_wall_glide = hash("wall_glide")
@@ -132,13 +134,12 @@ function update(self, dt)
     self.vertical_contact = 0
     self.will_fire = false
     self.will_dash = false
-    player_state.reset(self,self.can_climb)
-    self.can_climb = false
+    player_state.reset(self)
+    player_touch.reset()
     
 end
 
-local function handle_static_contact(self, normal, distance)
-     
+local function handle_static_contact(self, normal, distance)  
 	local proj = vmath.dot(self.correction, normal)
     local comp = (distance - proj) * normal
     self.correction = self.correction + comp
@@ -155,13 +156,15 @@ local function handle_static_contact(self, normal, distance)
 end
 
 function on_message(self, message_id, message, sender)
-
    if message_id == msg_contact_point_response then
+   		player_touch.add(message.group)
         if message.group == group_static_bg then
             handle_static_contact(self, message.normal, message.distance)
-        elseif message.group == group_climbable then
-        	self.can_climb = true
-        	print(message.group)
+        elseif message.group == group_climbable_top then
+        	if message.normal.y > 0.7 and message.distance < 15 then
+        		print(self.move_input, self.state)
+        		handle_static_contact(self, message.normal, message.distance)
+        	end
         end
     end
 end
@@ -188,10 +191,10 @@ function on_input(self, action_id, action)
         self.move_input.x = action.value
         flip_horizontal(self,false)
     elseif action_id == self.input_up then
-    	if self.can_climb == true then player_state.set_state(self, player_state.CLIMBING) end
+    	if player_touch.has(group_climbable) then player_state.set_state(self, player_state.CLIMBING) end
         self.move_input.y = action.value
     elseif action_id == self.input_down then
-    	if self.can_climb == true then player_state.set_state(self, player_state.CLIMBING) end
+    	if player_touch.has(group_climbable) then player_state.set_state(self, player_state.CLIMBING) end
         self.move_input.y = -action.value
     elseif action_id == self.input_jump then
         if action.pressed then
