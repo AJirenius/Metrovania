@@ -1,0 +1,9 @@
+local mess = require "shared.mess"
+
+function on_message(self, message_id, message, sender)
+	if message_id == mess.msg_die then
+		print("small die")
+    	factory.create("/factories#multi_fx", go.get_position(), nil, { fx = hash("slime_splat"), lif_time = 2 } , 1)
+    	go.delete()
+    end
+end

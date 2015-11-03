@@ -159,7 +159,81 @@ instances {
     z: 1.0
   }
 }
+instances {
+  id: "sword"
+  prototype: "/player/sword.go"
+  position {
+    x: 81.00069
+    y: 82.86428
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 scale_along_z: 0
+embedded_instances {
+  id: "factories"
+  data: "embedded_components {\n"
+  "  id: \"multi_fx\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/fx/multi_fx.go\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"slime_small\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/enemies/slime/slime_small.go\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 141.21927
+    y: 215.10902
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 embedded_instances {
   id: "level"
   data: "components {\n"

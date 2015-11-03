@@ -1,0 +1,37 @@
+----
+-- Requirements:
+-- gop.global.velocity
+--
+--
+-- Message received:
+-- mess.msg_take_damage
+
+go.property("tween", 0)
+go.property("speed", 4)
+go.property("max_time", 4)
+go.property("min_time", 0.5)
+go.property("max_wait", 2)
+go.property("min_wait", 1)
+
+local gop = require "utils.gop"
+local mess = require "shared.mess"
+
+function init(self)
+	self.global = gop.get_properties()
+	start_walk(self)
+end
+
+function start_walk(self)
+	local duration = math.random() * (self.max_time - self.min_time) + self.min_time
+	local delay = math.random() * (self.max_wait - self.min_wait) + self.min_wait
+	go.animate("#", "tween", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, duration, delay, function()
+		start_walk(self)
+	end)
+end
+
+
+function on_message(self, message_id, message, sender)
+    if message_id == mess.msg_take_damage and self.global.protect ~= true then
+    	cancel_walk(self)
+    end
+end

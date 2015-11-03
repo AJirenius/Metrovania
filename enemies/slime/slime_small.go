@@ -1,6 +1,6 @@
 components {
   id: "death"
-  component: "/enemies/slime/slime_death.script"
+  component: "/enemies/slime/slime_small_death.script"
   position {
     x: 0.0
     y: 0.0
@@ -27,20 +27,10 @@ components {
     z: 0.0
     w: 1.0
   }
-}
-components {
-  id: "hit_back"
-  component: "/behaviour_scripts/throw_back.script"
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
+  properties {
+    id: "health"
+    value: "2.0"
+    type: PROPERTY_TYPE_NUMBER
   }
 }
 components {

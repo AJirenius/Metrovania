@@ -1,0 +1,9 @@
+go.property("fx",hash(""))
+go.property("life",1)
+
+function init(self)
+   local url = msg.url()
+   url.fragment = self.fx
+   particlefx.play(url)
+   go.animate("#script", "life", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, self.life, 0, function() go.delete() end)
+end

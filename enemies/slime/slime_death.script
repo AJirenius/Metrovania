@@ -1,0 +1,11 @@
+local mess = require "shared.mess"
+
+function on_message(self, message_id, message, sender)
+	if message_id == mess.msg_die then
+		local pos = go.get_position()
+		factory.create("/factories#slime_small", pos, nil, { velocity = vmath.vector3((math.random()-0.5)*8,6,0) }, 0.5 )
+		factory.create("/factories#slime_small", pos, nil, { velocity = vmath.vector3((math.random()-0.5)*8,6,0)}, 0.5 )
+    	factory.create("/factories#multi_fx", pos, nil, { fx = hash("slime_splat"), lif_time = 2 } , 1)
+    	go.delete()
+    end
+end

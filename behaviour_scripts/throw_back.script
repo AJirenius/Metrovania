@@ -1,0 +1,20 @@
+----
+-- Requirements:
+-- gop.global.velocity
+--
+--
+-- Message received:
+-- mess.msg_take_damage { [direction = -1/1] }
+
+local gop = require "utils.gop"
+local mess = require "shared.mess"
+
+function init(self)
+	self.global = gop.get_properties()
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == mess.msg_take_damage and self.global.protect ~= true then
+    	self.global.velocity.x = 10 * message.direction or math.random()
+    end
+end

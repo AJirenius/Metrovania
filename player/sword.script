@@ -1,0 +1,29 @@
+go.property("strength",3)
+go.property("speed",0.17)
+local mess = require "shared.mess"
+
+function init(self)
+	self.is_hitting = false
+    msg.post(".", mess.msg_disable)
+end
+
+local function hit(self, direction)
+	self.direction = direction
+	local rot = vmath.quat_rotation_z(0.3*direction)
+	go.set_rotation(rot)
+	rot = vmath.quat_rotation_z(-math.pi*0.65*direction)
+	self.is_hitting = true
+	go.animate(".", "rotation", go.PLAYBACK_ONCE_FORWARD , rot, go.EASING_OUTSINE, self.speed, 0, function() 
+		self.is_hitting = false 
+		msg.post(".", mess.msg_disable)
+	end)
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == mess.msg_hit then
+    	if self.is_hitting == false then hit(self, message.direction or 1) end
+   	end
+   	if message_id == mess.msg_collision_response and message.group == mess.group_enemy then
+   		msg.post(message.other_id, mess.msg_take_damage, { damage = self.strength, direction = self.direction })
+   	end
+end
