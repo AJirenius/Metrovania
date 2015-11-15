@@ -6,10 +6,12 @@ Script will send new state to whole object
 seems like several states can be active at the same time? Call it something else than states?
 (awareness, protected)
 
-AWARENESS in here ?
+
 WALK (or idle?)
 ATTACK
+
 PROTECTED
+AWARENESS in here ?
 
 Walk will be overridden by attack
 Walk will be overridden by hit?

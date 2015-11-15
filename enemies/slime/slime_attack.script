@@ -1,0 +1,25 @@
+go.property("leap_acc", 600)
+go.property("tween",0)
+local mess = require "shared.mess"
+local gop = require "utils.gop"
+local state = require "enemies.enemy_state"
+
+local function leap_towards_player(self)
+	self.global.acceleration.y = self.leap_acc * 1
+	if go.get_position().x - go.get_position("/player").x > 0 then
+		self.global.acceleration.x = -self.leap_acc*0.6 
+	else
+		self.global.acceleration.x = self.leap_acc*0.6
+	end
+	go.animate("#", "tween", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.5, 0, function() state.set_state(self.global.url, state.FALL) end )
+end
+
+function init(self)
+	self.global = gop.get_properties()
+end
+
+function on_message(self, message_id, message, sender)	
+    if message_id == mess.msg_attack then
+    	leap_towards_player(self)
+    end
+end

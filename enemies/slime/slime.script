@@ -1,85 +1,36 @@
-go.property("activation_radius", 500)
-go.property("aware_radius", 200)
-go.property("walk_distance", 40)
-go.property("walk_delay", 0)
-go.property("walk_speed", 20)
-go.property("leap_prob", 0.01)
-go.property("leap_acc", 600)
 go.property("velocity", vmath.vector3(0,0,0))
 
-local STATE_FALLING = 1
-local STATE_WALKING = 2
-
 local gop = require "utils.gop"
-local xmath = require "utils.xmath"
 local config = require "main.config"
 local mess = require "shared.mess"
+local state = require "enemies.enemy_state"
 
-local function go_to_new_x(self)
-	if self.is_walking then return end
- 	self.is_walking = true
-	local pos = go.get_position()
-	local distance = (math.random()-0.5) * self.walk_distance * 2
-	local new_x = pos.x + distance
-	local time = math.abs(distance) / self.walk_speed
-	go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, new_x, go.EASING_LINEAR, time, math.random() * self.walk_delay, function() 
-		self.is_walking = false 
-		go_to_new_x(self)
-	end )
-end
 
-local function set_state(self,state)
-	if self.current_state == state then return end
-	self.current_state = state
-	if state == STATE_WALKING then
-		go_to_new_x(self)
-	end
-end
-
-local function leap_towards_player(self)
-	self.is_walking = false
-	go.cancel_animations(".", "position.x")
-	self.acceleration.y = self.leap_acc
-	if go.get_position().x - go.get_position("/player").x > 0 then
-		self.acceleration.x = -self.leap_acc*0.6 
-	else
-		self.acceleration.x = self.leap_acc*0.6
-	end
-end
 
 local function update_movement(self,dt)
-	self.acceleration.y = self.acceleration.y - config.GRAVITY * dt
-	self.global.velocity = self.global.velocity + (self.acceleration * dt)
+	self.global.acceleration.y = self.global.acceleration.y - config.GRAVITY * dt
+	self.global.velocity = self.global.velocity + (self.global.acceleration * dt)
 	self.global.velocity = self.global.velocity * (1-(config.FRICTION * dt))
 	go.set_position(go.get_position() + self.global.velocity)
 end
 
 local function reset(self)
     self.correction = vmath.vector3(0,0,0)
-    self.acceleration = vmath.vector3(0,0,0)
-    set_state(self, STATE_FALLING)
+    self.global.acceleration = vmath.vector3(0,0,0)
 end
 
 function init(self)
 	self.global = gop.get_properties()
-	msg.post(".",mess.msg_protect )
     reset(self)
     self.global.velocity = self.velocity
-    set_state(self,STATE_FALLING)
-    self.is_walking = false
+    state.add_enemy(self.global.url)
+    state.set_status(self.global.url, state.STATUS_PROTECT)
 end
 
 function update(self, dt)	
 
-	-- check awareness
-	local dist = xmath.distance(go.get_position(),go.get_position("/player"))
-	if dist < self.aware_radius and self.current_state == STATE_WALKING then
-		local rnd = math.random()
-		if  rnd < self.leap_prob then leap_towards_player(self) end
-	end
 
 	update_movement(self, dt)
-	
 	
 	reset(self)
 end
@@ -89,17 +40,16 @@ local function handle_static_contact(self, normal, distance)
     local comp = (math.abs(distance) - proj) * normal
     self.correction = self.correction + comp
     go.set_position(go.get_position() + comp)
-    if normal.x ~= 0 then 
+    if normal.x ~= 0 and  state.get_state(self.global.url) == state.WALK then 
+    	-- hit a side static
     	self.global.velocity.x = 0 
-    	go.cancel_animations(".", "position.x")
-    	self.is_walking = false
-    	go_to_new_x(self)
+    	state.set_state(self.global.url, state.WALK, true) -- forcing a new walk if already walking
     end
     if normal.y ~= 0 then 
-    	self.global.velocity.y = 0 
-    	if normal.y > 0 then
-    		set_state(self, STATE_WALKING)
+    	if normal.y > 0 and state.get_state(self.global.url) < state.WALK and self.global.velocity.y < 0  then
+    		state.set_state(self.global.url, state.WALK) -- feeling ground, can start to walk
     	end
+    	self.global.velocity.y = 0 
     end
 end
 

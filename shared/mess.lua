@@ -10,11 +10,18 @@ M.group_player_weapon = hash("player_weapon")
 M.msg_contact_point_response = hash("contact_point_response")
 M.msg_collision_response = hash("collision_response")
 M.msg_animation_done = hash("animation_done")
-M.msg_hit = hash("hit")
-M.msg_take_damage = hash("take_damage")
 M.msg_die = hash("die")
 M.msg_protect = hash("protect") -- makes object unvulnerable for { time = }
 M.msg_protect_ended = hash("protect_ended") -- makes object unvulnerable for { time = }
+M.msg_take_damage = hash("take_damage")
+
+M.msg_attack = hash("attack")
+M.msg_walk = hash("walk")
+M.msg_cancel_walk = hash("cancel_walk")
+M.msg_hit = hash("hit")
+
+M.msg_status_added = hash("status_added")
+M.msg_status_removed = hash("status_removed")
 
 M.msg_enable = hash("enable")
 M.msg_disable = hash("disable")

@@ -40,11 +40,11 @@ instances {
   }
 }
 instances {
-  id: "slime"
+  id: "slime10"
   prototype: "/enemies/slime/slime.go"
   position {
-    x: 1383.1561
-    y: 102.72121
+    x: 360.4046
+    y: 221.98198
     z: 0.0
   }
   rotation {
@@ -60,11 +60,11 @@ instances {
   }
 }
 instances {
-  id: "slime1"
+  id: "slime11"
   prototype: "/enemies/slime/slime.go"
   position {
-    x: 837.4477
-    y: 305.10315
+    x: 360.4046
+    y: 221.98198
     z: 0.0
   }
   rotation {
@@ -80,11 +80,151 @@ instances {
   }
 }
 instances {
-  id: "slime2"
+  id: "slime12"
   prototype: "/enemies/slime/slime.go"
   position {
-    x: 761.5545
-    y: 178.61443
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime13"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime14"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime15"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime16"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime17"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime18"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime19"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
     z: 0.0
   }
   rotation {
@@ -123,8 +263,8 @@ instances {
   id: "slime4"
   prototype: "/enemies/slime/slime.go"
   position {
-    x: 100.19925
-    y: 453.27563
+    x: 360.4046
+    y: 221.98198
     z: 0.0
   }
   rotation {
@@ -143,8 +283,8 @@ instances {
   id: "slime5"
   prototype: "/enemies/slime/slime.go"
   position {
-    x: 150.79474
-    y: 301.48917
+    x: 360.4046
+    y: 221.98198
     z: 0.0
   }
   rotation {
@@ -154,8 +294,88 @@ instances {
     w: 1.0
   }
   scale3 {
-    x: 0.5
-    y: 0.5
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime6"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime7"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime8"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "slime9"
+  prototype: "/enemies/slime/slime.go"
+  position {
+    x: 360.4046
+    y: 221.98198
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
     z: 1.0
   }
 }

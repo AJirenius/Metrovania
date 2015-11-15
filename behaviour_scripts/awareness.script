@@ -1,0 +1,33 @@
+go.property("aware_radius", 200)
+go.property("attack_radius", 150)
+go.property("attack_prob", 0.01)
+
+local gop = require "utils.gop"
+local mess = require "shared.mess"
+local xmath = require "utils.xmath"
+local state = require "enemies.enemy_state"
+
+function init(self)
+	self.global = gop.get_properties()
+end
+
+function update(self, dt)
+    -- check awareness
+	local dist = xmath.distance(go.get_position(),go.get_position("/player"))
+	
+	if dist < self.aware_radius then 
+		state.set_status(self.global.url, state.STATUS_AWARE) 
+	else
+		state.remove_status(self.global.url, state.STATUS_AWARE) 
+	end
+	if dist < self.attack_radius and state.has_state(self.global.url, state.WALK) then
+		
+		local rnd = math.random()
+		if  rnd < self.attack_prob then state.set_state(self.global.url, state.ATTACK) end
+		state.set_status(self.global.url, state.STATUS_CAN_ATTACK)
+	else
+		state.remove_status(self.global.url, state.STATUS_CAN_ATTACK) 
+	end
+	
+end
+

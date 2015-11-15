@@ -1,0 +1,23 @@
+local mess = require "shared.mess"
+go.property("walk_distance", 40)
+go.property("walk_delay", 0)
+go.property("walk_speed", 20)
+
+local function go_to_new_x(self)
+	local pos = go.get_position()
+	local distance = (math.random()-0.5) * self.walk_distance * 2
+	local new_x = pos.x + distance
+	local time = math.abs(distance) / self.walk_speed
+	go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, new_x, go.EASING_LINEAR, time, math.random() * self.walk_delay, function() 
+		go_to_new_x(self)
+	end )
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == mess.msg_walk then
+		print(message_id)
+		go_to_new_x(self)
+	elseif message_id == mess.msg_cancel_walk then
+		go.cancel_animations(".", "position.x")
+	end
+end
