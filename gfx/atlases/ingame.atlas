@@ -1,0 +1,24 @@
+images {
+  image: "/gfx/ball.png"
+}
+images {
+  image: "/gfx/chain.png"
+}
+images {
+  image: "/gfx/dude_0000_lower_leg.png"
+}
+images {
+  image: "/gfx/dude_0001_head.png"
+}
+images {
+  image: "/gfx/dude_0002_upper_leg.png"
+}
+images {
+  image: "/gfx/dude_0003_pelvis.png"
+}
+images {
+  image: "/gfx/dude_0004_body.png"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

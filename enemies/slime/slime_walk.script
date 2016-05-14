@@ -15,7 +15,6 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == mess.msg_walk then
-		print(message_id)
 		go_to_new_x(self)
 	elseif message_id == mess.msg_cancel_walk then
 		go.cancel_animations(".", "position.x")

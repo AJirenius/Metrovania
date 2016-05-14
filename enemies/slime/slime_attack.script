@@ -1,3 +1,4 @@
+go.property("damage",2)
 go.property("leap_acc", 600)
 go.property("tween",0)
 local mess = require "shared.mess"
@@ -21,5 +22,7 @@ end
 function on_message(self, message_id, message, sender)	
     if message_id == mess.msg_attack then
     	leap_towards_player(self)
+    elseif message_id == mess.msg_collision_response and message.group == mess.group_player then
+    	msg.post(message.other_id, mess.msg_take_damage, { damage = self.damage, direction = self.direction })
     end
 end

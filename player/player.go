@@ -1,4 +1,19 @@
 components {
+  id: "health"
+  component: "/player/health.script"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+components {
   id: "player"
   component: "/player/player.script"
   position {
@@ -18,6 +33,36 @@ components {
     type: PROPERTY_TYPE_NUMBER
   }
 }
+components {
+  id: "player_death"
+  component: "/player/player_death.script"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+components {
+  id: "protect"
+  component: "/player/protect.script"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
 embedded_components {
   id: "collisionobject"
   type: "collisionobject"
@@ -30,6 +75,7 @@ embedded_components {
   "mask: \"static_bg\"\n"
   "mask: \"climbable\"\n"
   "mask: \"climbable_top\"\n"
+  "mask: \"enemy\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
@@ -68,16 +114,17 @@ embedded_components {
   }
 }
 embedded_components {
-  id: "sprite"
-  type: "sprite"
-  data: "tile_set: \"/player/player.tilesource\"\n"
+  id: "spinemodel"
+  type: "spinemodel"
+  data: "spine_scene: \"/spine/dude.spinescene\"\n"
   "default_animation: \"idle\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
+  "skin: \"\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
+  "material: \"/builtins/materials/spine.material\"\n"
   ""
   position {
     x: 0.0
-    y: 32.0
+    y: 0.0
     z: 0.0
   }
   rotation {

@@ -1,20 +1,23 @@
-go.property("health",5)
+go.property("health",15)
 
 local gop = require "utils.gop"
 local mess = require "shared.mess"
-local state = require "enemies.enemy_state"
+local state = require "player.player_state"
 
 function init(self)
 	self.global = gop.get_properties()
 end
 
 function on_message(self, message_id, message, sender)
-    if message_id == mess.msg_take_damage and state.has_status(self.global.url, state.STATUS_PROTECT) == false then
+    if message_id == mess.msg_take_damage 
+    	and state.has_status(state.STATUS_PROTECT) == false 
+    	and state.get_state() == state.DEAD == false then
     	self.health = self.health - message.damage
+    	print("Current health:",self.health)
     	if self.health <= 0 then
     		msg.post(".", mess.msg_die)
     	else
-    		state.set_status(self.global.url, state.STATUS_PROTECT)
+    		state.set_status(state.STATUS_PROTECT)
     	end
     end
 end

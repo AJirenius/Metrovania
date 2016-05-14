@@ -16,7 +16,6 @@ end
 
 function on_message(self, message_id, message, sender)
     if message_id == mess.msg_take_damage then -- and state.has_status(self.global.url, state.STATUS_PROTECT) == false then
-    	print("here")
-    	self.global.velocity.x = 10 * message.direction or math.random()
+       	self.global.velocity.x = 10 * message.direction or math.random()
     end
 end

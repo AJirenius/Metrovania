@@ -1,9 +1,14 @@
 local M = {}
-local default_component = "#sprite"
+local default_component = "#spinemodel"
 
-function M.play_animation(self, anim, component)
+function M.play_animation(self, anim, loop, component)
+	if loop == true then 
+		loop = go.PLAYBACK_LOOP_FORWARD 
+	else
+		loop = go.PLAYBACK_ONCE_FORWARD
+    end
     if self.current_anim ~= anim then
-        msg.post(component or default_component, "play_animation", {id = anim})
+    	spine.play(default_component, anim, loop, 0.4)
         self.current_anim = anim
     end
 end

@@ -26,13 +26,15 @@ M.msg_status_removed = hash("status_removed")
 M.msg_enable = hash("enable")
 M.msg_disable = hash("disable")
 
-M.anim_run = hash("walk")
+M.anim_run_right = hash("walk_right")
+M.anim_run_left = hash("walk_left")
 M.anim_wall_glide = hash("wall_glide")
 M.anim_idle = hash("idle")
 M.anim_jump = hash("jump")
 M.anim_fall = hash("fall")
 M.anim_die = hash("die")
 M.anim_dash = hash("dash")
+M.anim_attack = hash("front_attack")
 
 
 return M
